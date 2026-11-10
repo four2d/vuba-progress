@@ -1,5 +1,5 @@
 {
-  "updated": "10 Nov 2026, 12:19 UK",
+  "updated": "10 Nov 2026, 15:05 UK",
   "platforms": [
     { "id": "ios", "name": "iPhone" },
     { "id": "android", "name": "Android" },
@@ -20,7 +20,7 @@
           "android": { "state": "done", "note": "Token kept in an Android Keystore key." } },
         { "id": "jobs", "label": "Jobs list",
           "ios": { "state": "done" },
-          "android": { "state": "done", "note": "1.0.5 shows the desk status on each job (Draft, Sent, Accepted). Not yet uploaded to Play." } },
+          "android": { "state": "done", "note": "1.0.5 on Play internal shows the desk status on each job and the quote screen (Draft, Sent, Accepted)." } },
         { "id": "quote-qty", "label": "Quote by m² or by kits",
           "ios": { "state": "done" },
           "android": { "state": "done" } },
@@ -116,10 +116,10 @@
       "items": [
         { "id": "test-build", "label": "Test build on a phone (TestFlight or Play internal)",
           "ios": { "state": "done", "note": "Build 12 on TestFlight, internal group Vuba Wiltshire (10 Nov). Laura Billingsley has build 11 installed." },
-          "android": { "state": "done", "note": "Play internal is at 1.0.4 (6), rolled out 10 Nov 11:51 UK. Versions 1.0.2, 1.0.3 and 1.0.4 were all rolled out on 10 Nov." } },
+          "android": { "state": "done", "note": "Play internal is at 1.0.5 (7), list “FOXON internal”, rolled out 10 Nov 15:04 UK from GitHub main a9e92a9." } },
         { "id": "latest-code", "label": "Store build has the latest GitHub code",
           "ios": { "state": "part", "note": "TestFlight build 12 matches GitHub main f462f08. Version 1.0 still has build 11 attached; switching needs Pete’s OK." },
-          "android": { "state": "part", "note": "Play internal has 1.0.4 (6), rolled out 10 Nov 11:51 UK. GitHub main is 1.0.5 (7), with desk status on jobs; not uploaded yet." } },
+          "android": { "state": "done", "note": "Play internal has 1.0.5 (7), from GitHub main a9e92a9, rolled out 10 Nov 15:04 UK." } },
         { "id": "submit", "label": "Sent for review",
           "ios": { "state": "todo" },
           "android": { "state": "todo" } },
