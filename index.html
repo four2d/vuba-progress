@@ -311,15 +311,29 @@
       <div class="step">
         <div><span class="tag red">Pete</span><div class="n">04</div></div>
         <div>
-          <h3>Get Android ready for Play</h3>
-          <p>Pete reviews the listing text. Then capture 7 or 8 screenshots and make the 1024 × 500 feature graphic. Create the upload key outside the repo.</p>
+          <h3>Done: Android 1.0.4 on Play internal testing</h3>
+          <p>Rolled out 10 Nov, 11:51 UK. Versions 1.0.2, 1.0.3 and 1.0.4 were all rolled out on 10 Nov. GitHub main is now 1.0.5 (7), which shows desk status on jobs; not uploaded yet.</p>
         </div>
       </div>
       <div class="step">
-        <div><span class="tag wait">Phone</span><div class="n">05</div></div>
+        <div><span class="tag red">Pete</span><div class="n">05</div></div>
         <div>
-          <h3>Test Android on a real phone, then Play internal testing</h3>
-          <p>Run a smoke test and check the ARCore measurements on a real phone. Only then, and only with Pete’s OK, set up internal testing on the FOXON Software Ltd Play account.</p>
+          <h3>Open fixes awaiting Pete’s OK</h3>
+          <p>iPhone weekend delivery dates should roll to Monday, as Android 1.0.2 does. iPhone camera measure should snap closed at the first corner, as Android 1.0.4 does. Desk economy delivery should also skip Saturday and Sunday. A desk API change is needed before the phone can drop a saved quote only after it is permanently deleted from trash, and so it can show In trash for a restorable quote.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag red">Pete</span><div class="n">06</div></div>
+        <div>
+          <h3>Finish the Android store listing</h3>
+          <p>Pete reviews the listing text. Then capture 7 or 8 screenshots and make the 1024 × 500 feature graphic. The Play upload key is already in use. Nothing further is uploaded without Pete’s OK.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag wait">Phone</span><div class="n">07</div></div>
+        <div>
+          <h3>Test Android camera measure on a real phone</h3>
+          <p>Check the ARCore measurements. Play internal already has 1.0.4.</p>
         </div>
       </div>
     </div>
@@ -333,8 +347,9 @@
       <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Legal entity and company number</h3><p>iPhone, Android and website. The privacy page still says to be confirmed. Vuba Surfaces Wiltshire Limited (Poole) is a different company, so do not use its details.</p></div></div>
       <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Is info@vubawiltshire.co.uk being read?</h3><p>Both apps and the site send customers to it. Confirm someone reads that inbox.</p></div></div>
       <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Price and countries</h3><p>iPhone. The base country shows as the US. Is it UK only, and is it free?</p></div></div>
-      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Play upload key, and OK for Play</h3><p>Android. Release signing reads the key from outside the repo, and no key exists yet. Nothing goes into Play Console without Pete.</p></div></div>
-      <div class="step"><div><span class="tag wait">Phone</span></div><div><h3>No real-phone test yet</h3><p>Camera measure has not been tried on a real iPhone or a real Android phone. The box has no phone or emulator for ARCore.</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>iPhone weekend delivery, iPhone snap-to-close, and desk economy weekends</h3><p>All three need Pete’s OK before work starts. Android already rolls weekend dates to Monday (1.0.2) and snaps a camera shape closed at the first corner (1.0.4).</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Desk API for trash versus a permanent delete</h3><p>The phone cannot tell a quote in the desk trash (still restorable) from one emptied for good. Both look like a 404. A desk change is needed before the app can show In trash, or drop a saved quote only after a permanent delete.</p></div></div>
+      <div class="step"><div><span class="tag wait">Phone</span></div><div><h3>No formal real-phone accuracy test yet</h3><p>Camera measure accuracy has not been signed off on a real iPhone or a real Android phone. The box has no phone or emulator for ARCore. Play internal already has Android 1.0.4.</p></div></div>
       <div class="step"><div><span class="tag wait">Website</span></div><div><h3>Links without the last slash break</h3><p><code>/app</code>, <code>/privacy</code>, <code>/support</code> and <code>/order</code> send you to plain http://, which errors (500). This is with the Vuba Website bot. Store listings keep the slash for now.</p></div></div>
     </div>
   </section>
@@ -353,7 +368,7 @@
   </section>
 </main>
 <footer>
-  Vuba Wiltshire · Vuba Measure · Checked 10 Nov 2026. iPhone: App Store Connect “Vuba Wiltshire” (com.vubawiltshire.measure), version 1.0 Prepare for Submission, manual release, never submitted. Android: GitHub main <code>15aa8bd</code> (29 Oct). Poppins is used under the SIL Open Font License.
+  Vuba Wiltshire · Vuba Measure · Checked 10 Nov 2026, 12:19 UK. iPhone: App Store Connect “Vuba Wiltshire” (com.vubawiltshire.measure), version 1.0 Prepare for Submission, manual release, never submitted. Android: Play internal 1.0.4 (6), rolled out 10 Nov 11:51 UK. GitHub main <code>a9e92a9</code> is 1.0.5 (7), not uploaded. Poppins is used under the SIL Open Font License.
 </footer>
 <script>
 const tick = `<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
@@ -381,20 +396,24 @@ const platforms = [
     call: "TestFlight group “Vuba Wiltshire” has one tester, Laura Billingsley, and she has it installed. Builds 1–5 and 7–12 are valid. Build 12 is the newest. Nobody has checked camera measure, quote and accept on a real iPhone."
   },
   {
-    id: "android", name: "Android", job: "four2d/Vuba-Measure-Android · not in Play Console",
+    id: "android", name: "Android", job: "Play internal testing · 1.0.4 (6)",
     draw: `<svg viewBox="0 0 120 120"><rect x="36" y="14" width="48" height="92" rx="6" fill="none" stroke="${S.mist}" stroke-width="4"/><circle cx="60" cy="22" r="2.5" fill="${S.mist}"/><path d="M46 82 L46 50 L74 50 L74 70 L62 70 L62 82 Z" fill="none" stroke="${S.blue}" stroke-width="4" stroke-linejoin="round"/><circle cx="46" cy="82" r="3.5" fill="${S.mist}"/><circle cx="74" cy="50" r="3.5" fill="${S.mist}"/></svg>`,
     tracks: [
-      { plat: "Play", ver: "Nothing uploaded · FOXON Software Ltd account", pill: "Not started", cls: "stop", steps: ["on","off","off","off"], labels: ["Built","On a phone","Not sent","Public"] },
-      { plat: "GitHub", ver: "main <code>15aa8bd</code> · 29 Oct · 0.1.0 (code 1)", pill: "87 tests", cls: "", steps: ["on","mid","off","off"], labels: ["Code","Listing drafted","Upload key","Phone test"] }
+      { plat: "Play", ver: "Internal testing · 1.0.4 (6) rolled out 10 Nov 11:51 UK", pill: "Internal", cls: "wait", steps: ["on","on","mid","off"], labels: ["Built","On a phone","Internal","Public"] },
+      { plat: "GitHub", ver: "main <code>a9e92a9</code> · 10 Nov · 1.0.5 (7)", pill: "95 tests", cls: "", steps: ["on","on","on","off"], labels: ["Code","Upload key","1.0.4 internal","1.0.5 not uploaded"] }
     ],
     lanes: [
+      { who: "Play", points: [
+        { v: "1.0.2 (4)", when: "10 Nov · internal, rolled out", state: "past" },
+        { v: "1.0.3 (5)", when: "10 Nov · internal, rolled out", state: "past" },
+        { v: "1.0.4 (6)", when: "10 Nov 11:51 UK · internal, rolled out", state: "now" }
+      ]},
       { who: "GitHub", points: [
-        { v: "934b76b", when: "28 Oct · live desk test passed", state: "wait" },
-        { v: "591a934", when: "28 Oct · release signing", state: "wait" },
-        { v: "15aa8bd", when: "29 Oct · Play listing drafted", state: "wait" }
+        { v: "6d3d993", when: "10 Nov · 1.0.4 snap-to-close", state: "past" },
+        { v: "a9e92a9", when: "10 Nov · 1.0.5 desk status", state: "now" }
       ]}
     ],
-    call: "87 tests: 85 pass, and 2 live tests skip without the login. Hand-draw measuring works. The ARCore camera measure is a first pass that has not been on a real phone."
+    call: "Play internal is at 1.0.4 (6). GitHub main is 1.0.5 (7), 95 tests (93 run, 2 live tests skip without the login), not uploaded. Camera measure accuracy is not yet signed off on a real phone."
   },
   {
     id: "web", name: "Website", job: "vubawiltshire.co.uk",
