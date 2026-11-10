@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vuba Measure — where the apps are</title>
+<style>
+  @font-face { font-family: Poppins; src: url("fonts/poppins_regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: Poppins; src: url("fonts/poppins_bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: Poppins; src: url("fonts/poppins_black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+  :root {
+    /* Vuba Wiltshire: live site vuba.css and the app Theme.swift / Theme.kt */
+    --charcoal: #111a1f;
+    --slate: #1a242c;
+    --panel: #152028;
+    --mist: #e8eef2;
+    --soft: #9aa7b2;
+    --blue: #035b80;
+    --blue-light: #006f9c;
+    --red: #821732;
+    --red-hover: #6b1228;
+    --white: #fff;
+    --line: rgba(232, 238, 242, 0.12);
+    --off: #26323b;
+    --radius: 4px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: var(--charcoal); color: var(--mist); }
+  section[id], article[id], h2[id] { scroll-margin-top: 72px; }
+  ::selection { background: var(--blue); color: var(--white); }
+  body {
+    font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3 { font-weight: 900; letter-spacing: -0.02em; }
+  .kicker, .stat span, .pill, .tag, .rail span, .who, .jump a, .job, .plat, .band h3, .legend, .chk th, .meter-label {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hazard { height: 6px; background: var(--blue); position: relative; }
+  .hazard::after { content: ""; position: absolute; left: 0; top: 0; width: 120px; height: 6px; background: var(--red); }
+  header, main, footer { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+  header { padding: 36px 0 8px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: end; }
+
+  /* Logo lockup: same markup and ratios as the live site header (.logo / .logo-bison / .logo-mark / .logo-sub), scaled by font-size */
+  .brand { display: flex; align-items: center; gap: 0.65em; line-height: 1; font-size: 24.38px; color: var(--white); text-decoration: none; }
+  .brand .logo-bison { width: 2.625em; height: 2.625em; object-fit: contain; display: block; flex-shrink: 0; }
+  .brand .logo-text { display: flex; flex-direction: column; gap: 0.15em; }
+  .brand .logo-mark { font-weight: 900; font-size: 1.35em; letter-spacing: 0.06em; color: var(--white); }
+  .brand .logo-mark::after { content: ""; display: inline-block; width: 0.2593em; height: 0.2593em; margin-left: 0.074em; margin-bottom: 0.55em; background: var(--red); vertical-align: middle; }
+  .brand .logo-sub { font-weight: 700; font-size: 0.68em; letter-spacing: 0.32em; text-transform: uppercase; color: var(--red); }
+  .brand .logo-app { display: block; margin-top: 0.5em; font-size: 0.5em; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--soft); }
+
+  .asof { justify-self: end; text-align: right; color: var(--soft); font-size: 13px; max-width: 300px; margin: 0; }
+  .kicker { display: inline-flex; align-items: center; gap: 0.55rem; color: var(--soft); font-size: 12px; letter-spacing: 0.18em; margin: 22px 0 0; }
+  .kicker::before { content: ""; width: 24px; height: 2px; background: var(--red); }
+  h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 20px 0 14px; color: var(--white); }
+  .lede { max-width: 640px; font-size: 18px; color: var(--soft); margin: 0 0 28px; }
+  .lede strong { color: var(--mist); font-weight: 700; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 8px 0 42px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--blue); border-radius: var(--radius); padding: 16px 16px 14px; }
+  .stat.red { border-top-color: var(--red); }
+  .stat b { display: block; font-size: 34px; font-weight: 900; letter-spacing: -0.02em; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .stat span { color: var(--soft); font-size: 12px; letter-spacing: 0.06em; }
+  section { margin: 0 0 56px; }
+  h2 { font-size: clamp(26px, 3.5vw, 34px); line-height: 1.15; margin: 0 0 8px; color: var(--white); }
+  .note { color: var(--soft); margin: 0 0 18px; max-width: 70ch; }
+  .chart { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 18px 8px; overflow-x: auto; }
+  .chart svg { width: 100%; height: auto; min-width: 720px; display: block; }
+  .apps { display: grid; gap: 18px; }
+  article.app { display: grid; grid-template-columns: 148px 1fr; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-height: 220px; }
+  .illu { background: var(--charcoal); display: grid; place-items: center; align-content: center; gap: 12px; border-right: 1px solid var(--line); padding: 18px; }
+  .illu svg { width: 108px; height: 108px; }
+  .illu .pct { font-size: 30px; font-weight: 900; letter-spacing: -0.02em; color: var(--white); line-height: 1; }
+  .body { padding: 18px 20px 18px; min-width: 0; }
+  .body h3 { margin: 0; font-size: 26px; line-height: 1.2; color: var(--white); }
+  .job { margin: 2px 0 14px; color: var(--soft); font-size: 12px; letter-spacing: 0.14em; }
+  .meter { margin: 0 0 16px; }
+  .meter-label { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--soft); margin-bottom: 6px; }
+  .meter-label b { color: var(--white); font-weight: 700; }
+  .bar { height: 10px; background: var(--off); border-radius: 2px; overflow: hidden; display: flex; }
+  .bar i { display: block; height: 100%; }
+  .bar i.done { background: var(--blue); }
+  .bar i.part { background: repeating-linear-gradient(-45deg, var(--blue-light) 0 3px, transparent 3px 6px); }
+  .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .track { border-top: 1px solid var(--line); padding-top: 10px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .plat { font-size: 13px; color: var(--white); letter-spacing: 0.1em; }
+  .ver { color: var(--soft); font-size: 14px; }
+  code { font-family: inherit; font-size: inherit; font-weight: 700; color: var(--white); }
+  .pill { display: inline-block; font-size: 11px; line-height: 1.5; padding: 3px 8px; background: var(--blue); color: var(--white); border-radius: 2px; white-space: nowrap; }
+  .pill.wait { background: transparent; color: var(--mist); box-shadow: inset 0 0 0 1.5px var(--blue-light); }
+  .pill.stop { background: transparent; color: var(--soft); box-shadow: inset 0 0 0 1.5px #3a4650; }
+  .pill.red { background: var(--red); color: var(--white); }
+  .rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+  .rail span { font-size: 10px; letter-spacing: 0.06em; line-height: 1.4; color: var(--soft); border-top: 4px solid var(--off); padding-top: 6px; }
+  .rail span.on { color: var(--white); border-color: var(--blue); }
+  .rail span.mid { color: var(--mist); border-color: var(--blue-light); border-top-style: dashed; }
+  .jump { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; padding: 12px 0; background: var(--charcoal); }
+  .jump a { color: var(--mist); font-size: 12px; text-decoration: none; padding: 6px 10px; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--line); }
+  .jump a:hover, .jump a:focus-visible { background: var(--blue); color: var(--white); box-shadow: none; outline: none; }
+  .call { margin-top: 12px; padding: 12px 14px; background: var(--slate); border-left: 3px solid var(--red); border-radius: var(--radius); color: var(--mist); font-size: 15px; }
+  .tl { margin-top: 16px; display: grid; gap: 16px; }
+  .lane { display: grid; grid-template-columns: 92px 1fr; gap: 8px; align-items: start; }
+  .who { font-size: 12px; color: var(--white); }
+  .points { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0 0 2px; position: relative; overflow-x: auto; }
+  .points::before { content: ""; position: absolute; top: 5px; left: 0; right: 18px; height: 2px; background: var(--line); }
+  .points:has(li:only-child)::before { display: none; }
+  .points li { flex: 1 0 112px; min-width: 112px; position: relative; }
+  .points i { display: block; width: 12px; height: 12px; margin: 0 0 8px; background: #3a4650; position: relative; z-index: 1; border-radius: 2px; }
+  .points li.past i, .points li.now i { background: var(--blue); }
+  .points li.now i { outline: 2px solid var(--blue-light); outline-offset: 3px; }
+  .points li.wait i { background: var(--charcoal); outline: 2px solid var(--blue-light); }
+  .points b { display: block; font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.2; }
+  .points span { display: block; margin-top: 4px; color: var(--soft); font-size: 13px; line-height: 1.35; }
+  .split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; align-items: start; }
+  .split > div { min-width: 0; }
+  .gapchart { padding: 18px 18px 16px; }
+  .gaprow { margin: 0 0 14px; }
+  .gaplabel { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin: 0 0 6px; }
+  .gapbar { display: flex; height: 16px; max-width: 360px; }
+  .gapbar i { display: block; height: 100%; border-radius: 2px; }
+  .gapbar .base { flex: 0 0 83.33%; background: var(--blue); border-radius: 2px 0 0 2px; }
+  .gapbar .miss { flex: 1; border: 1.5px dashed #3a4650; border-left: 0; border-radius: 0 2px 2px 0; }
+  .gapbar .add { flex: 1; background: var(--red); border-radius: 0 2px 2px 0; }
+  .gapchart p { margin: 18px 0 0; max-width: 52ch; color: var(--soft); font-size: 15px; }
+  .gapchart p.gapnext { margin-top: 8px; color: var(--mist); }
+  .ahead { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 16px; }
+  .ahead h2 { font-size: 22px; }
+  .ahead ul { margin: 0; padding: 0; list-style: none; }
+  .ahead li { margin: 12px 0; }
+  .ahead strong { color: var(--white); }
+  .path { margin-top: 8px; }
+  .step { display: grid; grid-template-columns: 96px 1fr; gap: 8px 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .step .n { font-size: 28px; font-weight: 900; letter-spacing: -0.02em; line-height: 1; color: var(--white); margin-top: 4px; }
+  .step h3 { margin: 0 0 4px; font-size: 20px; line-height: 1.3; color: var(--white); }
+  .step p { margin: 0; max-width: 68ch; color: var(--soft); }
+  .tag { display: inline-block; margin-bottom: 6px; font-size: 11px; line-height: 1.5; color: var(--white); background: var(--blue); padding: 2px 8px; border-radius: 2px; }
+  .tag.wait { background: transparent; color: var(--mist); box-shadow: inset 0 0 0 1.5px var(--blue-light); }
+  .tag.red { background: var(--red); }
+  .bands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+  .band { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 6px; }
+  .band h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.1em; color: var(--white); display: flex; justify-content: space-between; }
+  .band h3 small { color: var(--soft); font-size: 11px; }
+  .band ol { margin: 0 0 8px; padding-left: 1.2em; }
+  .band li { margin: 0 0 10px; }
+  .band li span { display: block; color: var(--soft); font-size: 14px; }
+  .band li em { font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-left: 6px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 11px; color: var(--soft); margin: 0 0 14px; align-items: center; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--mist); background: transparent; border: 0; box-shadow: inset 0 0 0 1px var(--line); border-radius: 2px; padding: 5px 10px; cursor: pointer; }
+  .legend button:hover { background: var(--slate); }
+  .chk-wrap { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; }
+  table.chk { width: 100%; border-collapse: collapse; min-width: 640px; }
+  .chk th, .chk td { text-align: left; padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  .chk thead th { border-top: 0; font-size: 11px; color: var(--soft); padding-top: 14px; }
+  .chk th.grp { font-size: 12px; color: var(--white); background: var(--slate); letter-spacing: 0.12em; }
+  .chk td.label { color: var(--mist); width: 34%; }
+  .chk td.cell { width: 22%; }
+  .box { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 3px; flex-shrink: 0; border: 0; padding: 0; background: transparent; box-shadow: inset 0 0 0 1.5px #3a4650; color: var(--white); cursor: pointer; vertical-align: middle; }
+  .box svg { width: 14px; height: 14px; }
+  .box.done { background: var(--blue); box-shadow: none; cursor: default; }
+  .box.part { box-shadow: inset 0 0 0 1.5px var(--blue-light); background: linear-gradient(135deg, var(--blue-light) 0 50%, transparent 50%); }
+  .box.local { background: transparent; box-shadow: none; outline: 1.5px dashed var(--mist); outline-offset: -1.5px; color: var(--mist); }
+  .box.na { cursor: default; box-shadow: none; color: var(--soft); }
+  .box:focus-visible { outline: 2px solid var(--blue-light); outline-offset: 2px; }
+  .cellwrap { display: flex; gap: 10px; align-items: flex-start; padding-top: 2px; }
+  .cellnote { font-size: 13px; line-height: 1.4; color: var(--soft); padding-top: 1px; }
+  .cellnote .lt { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mist); }
+  footer { color: var(--soft); font-size: 13px; padding: 8px 0 40px; border-top: 1px solid var(--line); padding-top: 18px; }
+  @media (max-width: 800px) {
+    header { grid-template-columns: 1fr; }
+    .asof { justify-self: start; text-align: left; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .tracks, .split, article.app, .lane, .bands, .step { grid-template-columns: 1fr; }
+    .illu { border-right: 0; border-bottom: 1px solid var(--line); grid-auto-flow: column; justify-content: start; gap: 18px; padding: 14px 18px; }
+    .illu svg { width: 56px; height: 56px; }
+    .points { flex-direction: column; gap: 14px; overflow: visible; }
+    .points::before { top: 8px; bottom: 28px; left: 5px; right: auto; width: 2px; height: auto; }
+    .points li { min-width: 0; flex: none; }
+    .points i { position: absolute; left: 0; top: 2px; }
+    .points b, .points span { padding-left: 22px; }
+    .step { gap: 4px; }
+    .step .n { display: inline-block; margin-left: 10px; font-size: 22px; }
+    .chk-wrap { overflow: visible; }
+    table.chk, .chk tbody, .chk tr, .chk td, .chk th.grp { display: block; min-width: 0; width: auto; }
+    .chk thead { display: none; }
+    .chk tr { border-top: 1px solid var(--line); padding: 10px 14px 6px; }
+    .chk th.grp { border-top: 0; padding: 10px 14px; }
+    .chk tr:has(th.grp) { padding: 0; }
+    .chk td { border-top: 0; padding: 0 0 6px; }
+    .chk td.label { width: auto; font-weight: 700; color: var(--white); padding-bottom: 8px; }
+    .chk td.cell { width: auto; display: grid; grid-template-columns: 76px 1fr; align-items: start; }
+    .chk td.cell::before { content: attr(data-plat); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); padding-top: 5px; }
+    .chk td.cell.na { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="hazard" aria-hidden="true"></div>
+<header>
+  <div class="brand" aria-label="Vuba Wiltshire">
+    <img class="logo-bison" src="vuba-logo-white.svg" alt="">
+    <span class="logo-text">
+      <span class="logo-mark">VUBA</span>
+      <span class="logo-sub">Wiltshire</span>
+    </span>
+  </div>
+  <p class="asof">Checked 10 Nov 2026. App Store Connect, both GitHub repos and the live site. Nothing has been sent to Apple or Google for review.</p>
+</header>
+<main>
+  <p class="kicker">Vuba Measure · iPhone and Android · nothing public</p>
+  <h1>Where the Vuba Measure apps are.</h1>
+  <p class="lede">The iPhone app is on TestFlight as <strong>build 11</strong> and ready to send, once a few store forms are filled in. Android is built and tested on the box, but <strong>has not been on a phone</strong> and is not in Play Console. Every upload and submit waits for Pete.</p>
+  <nav class="jump" aria-label="On this page">
+    <a href="#progress">Progress</a>
+    <a href="#gap">Phone gap</a>
+    <a href="#left">Left to do</a>
+    <a href="#next">Next</a>
+    <a href="#blockers">Blockers</a>
+    <a href="#features">Checklist</a>
+  </nav>
+  <div class="call">Build 11 on Apple and on Laura’s phone does <strong>not</strong> have the call and email help links or <code>info@vubawiltshire.co.uk</code>. GitHub main <code>177936a</code> has them. Build 12 is the fix, and it needs Pete’s OK to upload.</div>
+
+  <div class="stats">
+    <div class="stat"><b data-pct="ios">—</b><span>iPhone checklist done</span></div>
+    <div class="stat"><b data-pct="android">—</b><span>Android checklist done</span></div>
+    <div class="stat"><b>11</b><span>iPhone build on TestFlight</span></div>
+    <div class="stat red"><b>0</b><span>Public store releases</span></div>
+  </div>
+
+  <section id="progress">
+    <h2>Progress</h2>
+    <p class="note">Each percentage is worked out from the checklist at the bottom of this page. A finished item counts in full. A built or drafted item counts as half. Local ticks do not count.</p>
+    <div class="apps" id="apps"></div>
+  </section>
+
+  <section id="stages">
+    <h2>The same four steps</h2>
+    <p class="note">Blue means that step is done. Half blue means it is prepared and not sent. Grey means not started. Public is grey on both apps.</p>
+    <div class="chart">
+      <svg viewBox="0 0 980 140" role="img" aria-label="Stage chart for the iPhone and Android apps">
+        <g font-family="Poppins, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="1" fill="#9aa7b2">
+          <text x="168" y="28">BUILT</text>
+          <text x="358" y="28">ON A PHONE</text>
+          <text x="548" y="28">STORE PAGE</text>
+          <text x="738" y="28">PUBLIC</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="split">
+    <div>
+      <h2 id="gap">On the phone, not the same build</h2>
+      <p class="note">Build 11 was made on Pete’s Mac on 30 Oct. The support email change went to GitHub on 28 Oct and was not in that copy. Both are now on GitHub main.</p>
+      <div class="chart gapchart" role="img" aria-label="Build 11 on the phone is missing the 28 Oct support change that is on GitHub main">
+        <div class="gaprow"><div class="gaplabel">Apple and the phone · build 11 · 30 Oct</div><div class="gapbar"><i class="base"></i><i class="miss"></i></div></div>
+        <div class="gaprow"><div class="gaplabel">GitHub main · 177936a · 10 Nov</div><div class="gapbar"><i class="base"></i><i class="add"></i></div></div>
+        <p>The red part is the 28 Oct change: call and email help links, and info@vubawiltshire.co.uk. It is not on any phone yet.</p>
+        <p class="gapnext">Next upload is build 12. It needs Pete’s OK.</p>
+      </div>
+    </div>
+    <div class="ahead">
+      <h2 id="ahead">Written, not on the phone</h2>
+      <ul>
+        <li><strong>iPhone.</strong> Call and email help links and <code>info@vubawiltshire.co.uk</code> (28 Oct). On GitHub main, not in build 11.</li>
+        <li><strong>Android.</strong> All of it. Version 0.1.0 (code 1) has never been on a phone. The camera measure has not been tried on a real one.</li>
+        <li><strong>Website.</strong> Nothing waiting. The app, privacy and support pages are live.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="left">
+    <h2>What’s left to do</h2>
+    <p class="note">Every checklist item that is not finished yet, in checklist order. This list comes from <code>features.json</code>, so it moves when an item is ticked there.</p>
+    <div class="bands" id="leftBands"></div>
+  </section>
+
+  <section id="next">
+    <h2>What’s next</h2>
+    <p class="note">In this order. Nothing is uploaded, sent to Play Console or submitted without Pete saying so in chat.</p>
+    <div class="path">
+      <div class="step">
+        <div><span class="tag red">Pete</span><div class="n">01</div></div>
+        <div>
+          <h3>Upload iPhone build 12</h3>
+          <p>Build it from GitHub main <code>177936a</code>, so TestFlight gets the support email. This only happens after Pete says OK.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag wait">Phone</span><div class="n">02</div></div>
+        <div>
+          <h3>Test it on a real iPhone</h3>
+          <p>Use TestFlight to try camera measure, a quote and an accept on the newest build. Use the practice account only.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag red">Pete</span><div class="n">03</div></div>
+        <div>
+          <h3>Finish the App Store forms</h3>
+          <p>Pete confirms the legal entity and company number. Then the privacy page is finished and its link goes in. After that, fill in the App Privacy answers, and the price and countries (UK, free?).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag red">Pete</span><div class="n">04</div></div>
+        <div>
+          <h3>Get Android ready for Play</h3>
+          <p>Pete reviews the listing text. Then capture 7 or 8 screenshots and make the 1024 × 500 feature graphic. Create the upload key outside the repo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div><span class="tag wait">Phone</span><div class="n">05</div></div>
+        <div>
+          <h3>Test Android on a real phone, then Play internal testing</h3>
+          <p>Run a smoke test and check the ARCore measurements on a real phone. Only then, and only with Pete’s OK, set up internal testing on the FOXON Software Ltd Play account.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="blockers">
+    <h2>Blockers</h2>
+    <p class="note">What is stuck, and who it waits on.</p>
+    <div class="path">
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>OK to upload build 12</h3><p>iPhone. Until then, TestFlight stays on build 11 without the support email.</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Legal entity and company number</h3><p>iPhone, Android and website. The privacy page still says to be confirmed. Vuba Surfaces Wiltshire Limited (Poole) is a different company, so do not use its details.</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Is info@vubawiltshire.co.uk being read?</h3><p>Both apps and the site send customers to it. Confirm someone reads that inbox.</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Price and countries</h3><p>iPhone. The base country shows as the US. Is it UK only, and is it free?</p></div></div>
+      <div class="step"><div><span class="tag red">Pete</span></div><div><h3>Play upload key, and OK for Play</h3><p>Android. Release signing reads the key from outside the repo, and no key exists yet. Nothing goes into Play Console without Pete.</p></div></div>
+      <div class="step"><div><span class="tag wait">Phone</span></div><div><h3>No real-phone test yet</h3><p>Camera measure has not been tried on a real iPhone or a real Android phone. The box has no phone or emulator for ARCore.</p></div></div>
+      <div class="step"><div><span class="tag wait">Website</span></div><div><h3>Links without the last slash break</h3><p><code>/app</code>, <code>/privacy</code>, <code>/support</code> and <code>/order</code> send you to plain http://, which errors (500). This is with the Vuba Website bot. Store listings keep the slash for now.</p></div></div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Feature checklist</h2>
+    <p class="note">This list comes from <code>features.json</code> in this folder. A bot ticks an item by editing that file and pushing. Click an empty box to add a local tick. It is saved only in this browser, it is not saved to the file, and it does not change the percentages.</p>
+    <div class="legend" id="legend">
+      <span><i class="box done" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></i>Done</span>
+      <span><i class="box part" aria-hidden="true"></i>Built or drafted</span>
+      <span><i class="box" aria-hidden="true"></i>Not done</span>
+      <span><i class="box local" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></i>Local tick, not yet saved</span>
+      <button type="button" id="clearLocal" hidden>Clear local ticks</button>
+    </div>
+    <div class="chk-wrap"><table class="chk" id="chk"></table></div>
+  </section>
+</main>
+<footer>
+  Vuba Wiltshire · Vuba Measure · Checked 10 Nov 2026. iPhone: App Store Connect “Vuba Wiltshire” (com.vubawiltshire.measure), version 1.0 Prepare for Submission, manual release, never submitted. Android: GitHub main <code>15aa8bd</code> (29 Oct). Poppins is used under the SIL Open Font License.
+</footer>
+<script>
+const tick = `<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>`;
+const S = { blue: "#035b80", light: "#006f9c", off: "#26323b", line: "#3a4650", mist: "#e8eef2" };
+
+const platforms = [
+  {
+    id: "ios", name: "iPhone", job: "App Store Connect · Vuba Wiltshire",
+    draw: `<svg viewBox="0 0 120 120"><rect x="36" y="14" width="48" height="92" rx="9" fill="none" stroke="${S.mist}" stroke-width="4"/><rect x="51" y="21" width="18" height="5" rx="2.5" fill="${S.mist}"/><path d="M47 76 L58 48 L74 60 L66 84 Z" fill="${S.blue}"/><rect x="54" y="94" width="12" height="3" rx="1.5" fill="${S.mist}"/></svg>`,
+    tracks: [
+      { plat: "App Store", ver: "1.0 · build 11 attached · valid to 28 Jan 2027", pill: "Prepare for submission", cls: "wait", steps: ["on","on","mid","off"], labels: ["Built","On a phone","Prepared","Public"] },
+      { plat: "GitHub", ver: "main <code>177936a</code> · 10 Nov · 51/51 tests", pill: "Ahead of build 11", cls: "red", steps: ["on","off","off","off"], labels: ["Merged","Build 12","TestFlight","Checked"] }
+    ],
+    lanes: [
+      { who: "Apple", points: [
+        { v: "1.0 (11)", when: "30 Oct · TestFlight, on Laura’s phone", state: "now" },
+        { v: "1.0 (12)", when: "Not uploaded · needs Pete’s OK", state: "wait" }
+      ]},
+      { who: "GitHub", points: [
+        { v: "dc041eb", when: "28 Oct · support email", state: "wait" },
+        { v: "177936a", when: "10 Nov · Mac work merged", state: "wait" }
+      ]}
+    ],
+    call: "TestFlight group “Vuba Wiltshire” has one tester, Laura Billingsley, and she has it installed. Builds 1–5 and 7–11 are valid. Nobody has checked camera measure, quote and accept on a real iPhone."
+  },
+  {
+    id: "android", name: "Android", job: "four2d/Vuba-Measure-Android · not in Play Console",
+    draw: `<svg viewBox="0 0 120 120"><rect x="36" y="14" width="48" height="92" rx="6" fill="none" stroke="${S.mist}" stroke-width="4"/><circle cx="60" cy="22" r="2.5" fill="${S.mist}"/><path d="M46 82 L46 50 L74 50 L74 70 L62 70 L62 82 Z" fill="none" stroke="${S.blue}" stroke-width="4" stroke-linejoin="round"/><circle cx="46" cy="82" r="3.5" fill="${S.mist}"/><circle cx="74" cy="50" r="3.5" fill="${S.mist}"/></svg>`,
+    tracks: [
+      { plat: "Play", ver: "Nothing uploaded · FOXON Software Ltd account", pill: "Not started", cls: "stop", steps: ["on","off","off","off"], labels: ["Built","On a phone","Not sent","Public"] },
+      { plat: "GitHub", ver: "main <code>15aa8bd</code> · 29 Oct · 0.1.0 (code 1)", pill: "87 tests", cls: "", steps: ["on","mid","off","off"], labels: ["Code","Listing drafted","Upload key","Phone test"] }
+    ],
+    lanes: [
+      { who: "GitHub", points: [
+        { v: "934b76b", when: "28 Oct · live desk test passed", state: "wait" },
+        { v: "591a934", when: "28 Oct · release signing", state: "wait" },
+        { v: "15aa8bd", when: "29 Oct · Play listing drafted", state: "wait" }
+      ]}
+    ],
+    call: "87 tests: 85 pass, and 2 live tests skip without the login. Hand-draw measuring works. The ARCore camera measure is a first pass that has not been on a real phone."
+  },
+  {
+    id: "web", name: "Website", job: "vubawiltshire.co.uk",
+    draw: `<svg viewBox="0 0 120 120"><rect x="14" y="24" width="92" height="72" rx="5" fill="none" stroke="${S.mist}" stroke-width="4"/><path d="M14 40h92" stroke="${S.mist}" stroke-width="4"/><rect x="26" y="52" width="40" height="6" fill="${S.blue}"/><rect x="26" y="64" width="64" height="4" fill="${S.line}"/><rect x="26" y="74" width="54" height="4" fill="${S.line}"/></svg>`,
+    tracks: [
+      { plat: "App pages", ver: "<code>/app/</code> · <code>/privacy/</code> · <code>/support/</code>", pill: "Live", cls: "", steps: ["on","on","mid","on"], labels: ["App page","Support","Privacy final","Order desk"] },
+      { plat: "Contact", ver: "01985 221123 · info@vubawiltshire.co.uk", pill: "Redirect bug", cls: "red", steps: ["on","on","off","off"], labels: ["Phone","Email","No-slash links","Inbox read"] }
+    ],
+    call: "The privacy page is live, but the company name and number are still to be confirmed. Links without the last slash send you to http:// and error."
+  }
+];
+
+const stageRows = [
+  ["iPhone", ["full","full","half","none"]],
+  ["Android", ["full","none","none","none"]]
+];
+
+function pctOf(data, pid) {
+  let n = 0, got = 0, done = 0, part = 0, todo = 0;
+  data.groups.forEach(g => g.items.forEach(it => {
+    const c = it[pid]; if (!c || c.state === "na") return;
+    n++; if (c.state === "done") { got += 1; done++; } else if (c.state === "part") { got += 0.5; part++; } else todo++;
+  }));
+  return { pct: n ? Math.round(got / n * 100) : 0, n, done, part, todo };
+}
+
+const LKEY = "vuba-progress-local-ticks";
+const local = (() => { try { return JSON.parse(localStorage.getItem(LKEY) || "{}"); } catch (e) { return {}; } })();
+const saveLocal = () => { try { localStorage.setItem(LKEY, JSON.stringify(local)); } catch (e) {} };
+
+function drawApps(data) {
+  document.getElementById("apps").innerHTML = platforms.map(a => {
+    const p = data ? pctOf(data, a.id) : null;
+    const meter = p ? `<div class="meter"><div class="meter-label"><span><b>${p.done}</b> done · <b>${p.part}</b> built or drafted · <b>${p.todo}</b> to do</span><span>${p.n} items</span></div>
+      <div class="bar" role="img" aria-label="${p.pct}% done"><i class="done" style="width:${p.done/p.n*100}%"></i><i class="part" style="width:${p.part/p.n*100}%"></i></div></div>` : "";
+    return `
+  <article class="app" id="${a.id}">
+    <div class="illu">${a.draw}${p ? `<div class="pct">${p.pct}%</div>` : ""}</div>
+    <div class="body">
+      <h3>${a.name}</h3>
+      <p class="job">${a.job}</p>
+      ${meter}
+      <div class="tracks">
+        ${a.tracks.map(t => `
+          <div class="track">
+            <div class="row"><span class="plat">${t.plat}</span><span class="pill ${t.cls}">${t.pill}</span></div>
+            <div class="ver">${t.ver}</div>
+            <div class="rail">${t.labels.map((lb,i) => `<span class="${t.steps[i]==="on"?"on":t.steps[i]==="mid"?"mid":""}">${lb}</span>`).join("")}</div>
+          </div>`).join("")}
+      </div>
+      ${a.lanes ? `<div class="tl">${a.lanes.map(l => `
+        <div class="lane">
+          <div class="who">${l.who}</div>
+          <ol class="points">${l.points.map(pt => `<li class="${pt.state}"><i aria-hidden="true"></i><b>${pt.v}</b><span>${pt.when}</span></li>`).join("")}</ol>
+        </div>`).join("")}</div>` : ""}
+      ${a.call ? `<div class="call">${a.call}</div>` : ""}
+    </div>
+  </article>`;
+  }).join("");
+}
+
+function drawStages() {
+  const svg = document.querySelector("#stages svg");
+  const ns = "http://www.w3.org/2000/svg";
+  stageRows.forEach((row, i) => {
+    const y = 52 + i * 40;
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", "8"); label.setAttribute("y", y + 14);
+    label.setAttribute("fill", "#fff"); label.setAttribute("font-family", "Poppins, Helvetica, sans-serif");
+    label.setAttribute("font-size", "13"); label.setAttribute("font-weight", "700"); label.setAttribute("letter-spacing", "1");
+    label.textContent = row[0].toUpperCase();
+    svg.appendChild(label);
+    row[1].forEach((state, s) => {
+      const x = 168 + s * 190;
+      const r = document.createElementNS(ns, "rect");
+      r.setAttribute("x", x); r.setAttribute("y", y); r.setAttribute("width", "170"); r.setAttribute("height", "18"); r.setAttribute("rx", "2");
+      r.setAttribute("fill", state === "full" ? S.blue : state === "half" ? "none" : S.off);
+      if (state === "half") { r.setAttribute("stroke", S.light); r.setAttribute("stroke-width", "2"); r.setAttribute("x", x + 1); r.setAttribute("y", y + 1); r.setAttribute("width", "168"); r.setAttribute("height", "16"); }
+      svg.appendChild(r);
+      if (state === "half") {
+        const h = document.createElementNS(ns, "rect");
+        h.setAttribute("x", x); h.setAttribute("y", y); h.setAttribute("width", "85"); h.setAttribute("height", "18"); h.setAttribute("rx", "2"); h.setAttribute("fill", S.blue);
+        svg.appendChild(h);
+      }
+    });
+  });
+}
+
+function drawLeft(data) {
+  document.getElementById("leftBands").innerHTML = data.platforms.map(pl => {
+    const items = [];
+    data.groups.forEach(g => g.items.forEach(it => {
+      const c = it[pl.id]; if (!c || c.state === "done" || c.state === "na") return;
+      items.push(`<li>${it.label}${c.state === "part" ? "<em>Half done</em>" : ""}${c.note ? `<span>${c.note}</span>` : ""}</li>`);
+    }));
+    return `<div class="band"><h3>${pl.name} <small>${items.length} left</small></h3><ol>${items.join("")}</ol></div>`;
+  }).join("");
+}
+
+function drawChecklist(data) {
+  const pls = data.platforms;
+  const head = `<thead><tr><th>Item</th>${pls.map(p => `<th>${p.name}</th>`).join("")}</tr></thead>`;
+  const body = data.groups.map(g => `<tbody><tr><th class="grp" colspan="${pls.length + 1}">${g.name}</th></tr>${g.items.map(it => `<tr><td class="label">${it.label}</td>${pls.map(p => {
+    const c = it[p.id];
+    if (!c || c.state === "na") return `<td class="cell na" data-plat="${p.name}"><div class="cellwrap"><span class="box na" aria-label="Does not apply">–</span></div></td>`;
+    const key = it.id + ":" + p.id;
+    if (c.state === "done") return `<td class="cell" data-plat="${p.name}"><div class="cellwrap"><span class="box done" role="img" aria-label="Done">${tick}</span><span class="cellnote">${c.note || ""}</span></div></td>`;
+    const isLocal = !!local[key];
+    const cls = isLocal ? "local" : c.state === "part" ? "part" : "";
+    const lbl = isLocal ? "Local tick, not yet saved. Click to remove." : (c.state === "part" ? "Built or drafted. Click to add a local tick." : "Not done. Click to add a local tick.");
+    return `<td class="cell" data-plat="${p.name}"><div class="cellwrap"><button type="button" class="box ${cls}" data-key="${key}" aria-pressed="${isLocal}" aria-label="${lbl}" title="${lbl}">${isLocal ? tick : ""}</button><span class="cellnote">${isLocal ? `<span class="lt">Local tick, not yet saved</span>` : ""}${c.note || ""}</span></div></td>`;
+  }).join("")}</tr>`).join("")}</tbody>`).join("");
+  const t = document.getElementById("chk");
+  t.innerHTML = head + body;
+  t.querySelectorAll("button.box").forEach(b => b.addEventListener("click", () => {
+    const k = b.dataset.key; if (local[k]) delete local[k]; else local[k] = true; saveLocal(); drawChecklist(data);
+  }));
+  const clear = document.getElementById("clearLocal");
+  clear.hidden = Object.keys(local).length === 0;
+  clear.onclick = () => { Object.keys(local).forEach(k => delete local[k]); saveLocal(); drawChecklist(data); };
+}
+
+drawStages();
+drawApps(null);
+fetch("features.json", { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    document.querySelectorAll("[data-pct]").forEach(el => { el.textContent = pctOf(data, el.dataset.pct).pct + "%"; });
+    drawApps(data); drawLeft(data); drawChecklist(data);
+  })
+  .catch(() => {
+    const msg = `<div class="call">The checklist file did not load. Open this page through the local server, at http://127.0.0.1:8766/vuba-progress/index.html, not as a file.</div>`;
+    document.getElementById("leftBands").outerHTML = msg;
+    document.getElementById("chk").outerHTML = msg;
+  });
+</script>
+</body>
+</html>

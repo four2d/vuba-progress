@@ -1,0 +1,136 @@
+{
+  "updated": "10 Nov 2026",
+  "platforms": [
+    { "id": "ios", "name": "iPhone" },
+    { "id": "android", "name": "Android" },
+    { "id": "web", "name": "Website" }
+  ],
+  "states": {
+    "done": "Done and checked",
+    "part": "Built or drafted, not yet checked or finished",
+    "todo": "Not done",
+    "na": "Does not apply"
+  },
+  "groups": [
+    {
+      "name": "In the app",
+      "items": [
+        { "id": "sign-in", "label": "Sign in with a trade account",
+          "ios": { "state": "done" },
+          "android": { "state": "done", "note": "Token kept in an Android Keystore key." } },
+        { "id": "jobs", "label": "Jobs list",
+          "ios": { "state": "done" },
+          "android": { "state": "done", "note": "Desk quotes and quotes saved on the phone." } },
+        { "id": "quote-qty", "label": "Quote by m² or by kits",
+          "ios": { "state": "done" },
+          "android": { "state": "done" } },
+        { "id": "plan-edit", "label": "Drag the corners of a measured plan",
+          "ios": { "state": "done" },
+          "android": { "state": "done", "note": "5 cm snap. Type each side length." } },
+        { "id": "hand-draw", "label": "Draw a plan by hand, no camera",
+          "ios": { "state": "todo", "note": "iPhone measures with the camera, then edits the plan." },
+          "android": { "state": "done", "note": "Quick rectangle or tap the corners." } },
+        { "id": "camera-measure", "label": "Measure with the camera",
+          "ios": { "state": "part", "note": "In build 11. Not yet checked on a real iPhone." },
+          "android": { "state": "part", "note": "ARCore first pass. Not tried on a real phone." } },
+        { "id": "blend", "label": "Pick a blend",
+          "ios": { "state": "done" },
+          "android": { "state": "done" } },
+        { "id": "delivery", "label": "Collection or delivery, with a delivered-by date",
+          "ios": { "state": "done" },
+          "android": { "state": "done" } },
+        { "id": "accept", "label": "Accept a quote into an order",
+          "ios": { "state": "done" },
+          "android": { "state": "done", "note": "Live desk test passed 28 Oct with the demo account. Practice accept only." } },
+        { "id": "saved", "label": "Quotes saved on the phone",
+          "ios": { "state": "done" },
+          "android": { "state": "done" } },
+        { "id": "support", "label": "Call or email the office (01985 221123, info@vubawiltshire.co.uk)",
+          "ios": { "state": "part", "note": "On GitHub main 177936a. Not in build 11." },
+          "android": { "state": "done" },
+          "web": { "state": "done", "note": "On /app/, /privacy/ and /support/." } },
+        { "id": "a11y", "label": "Accessibility labels",
+          "ios": { "state": "done", "note": "Sign-in fields, password and job rows." },
+          "android": { "state": "todo" } }
+      ]
+    },
+    {
+      "name": "Checks",
+      "items": [
+        { "id": "unit-tests", "label": "Unit tests pass",
+          "ios": { "state": "done", "note": "51 of 51." },
+          "android": { "state": "done", "note": "87 tests. 85 run, 2 live tests skip without the login." } },
+        { "id": "real-phone", "label": "Tested on a real phone (camera measure, quote, accept)",
+          "ios": { "state": "todo" },
+          "android": { "state": "todo" } },
+        { "id": "camera-accuracy", "label": "Camera measure accuracy checked",
+          "ios": { "state": "todo" },
+          "android": { "state": "todo" } }
+      ]
+    },
+    {
+      "name": "Store",
+      "items": [
+        { "id": "listing", "label": "Store listing text",
+          "ios": { "state": "done", "note": "Description, keywords, promo text, support and marketing links." },
+          "android": { "state": "part", "note": "Drafted in docs/store/PLAY_LISTING.md. Pete to review." } },
+        { "id": "screenshots", "label": "Screenshots",
+          "ios": { "state": "done", "note": "Five 6.7-inch shots." },
+          "android": { "state": "todo", "note": "Plan for 7 or 8 shots is written." } },
+        { "id": "feature-graphic", "label": "Feature graphic, 1024 × 500",
+          "ios": { "state": "na" },
+          "android": { "state": "todo", "note": "Brief is written." } },
+        { "id": "icon", "label": "Store icon",
+          "ios": { "state": "done" },
+          "android": { "state": "done", "note": "512 px, made from the iPhone icon." } },
+        { "id": "rating", "label": "Category and age rating",
+          "ios": { "state": "done", "note": "Business, 4+." },
+          "android": { "state": "todo" } },
+        { "id": "review-notes", "label": "Review notes and demo login",
+          "ios": { "state": "done" },
+          "android": { "state": "part", "note": "App access text drafted." } },
+        { "id": "privacy-page", "label": "Privacy policy final, with legal entity and company number",
+          "ios": { "state": "todo", "note": "Privacy URL is blank in App Store Connect." },
+          "android": { "state": "todo" },
+          "web": { "state": "part", "note": "/privacy/ is live. Company name and number are still to confirm." } },
+        { "id": "privacy-answers", "label": "App Privacy or Data safety answers",
+          "ios": { "state": "todo" },
+          "android": { "state": "part", "note": "Data safety drafted. Not in Play Console." } },
+        { "id": "pricing", "label": "Price and countries",
+          "ios": { "state": "todo", "note": "Base country shows the US." },
+          "android": { "state": "todo" } },
+        { "id": "signing", "label": "Release signing",
+          "ios": { "state": "done" },
+          "android": { "state": "part", "note": "Reads a key from outside the repo. No upload key yet." } }
+      ]
+    },
+    {
+      "name": "Release",
+      "items": [
+        { "id": "test-build", "label": "Test build on a phone (TestFlight or Play internal)",
+          "ios": { "state": "done", "note": "Build 11. Laura Billingsley has it installed." },
+          "android": { "state": "todo", "note": "Not in Play Console." } },
+        { "id": "latest-code", "label": "Store build has the latest GitHub code",
+          "ios": { "state": "todo", "note": "GitHub main 177936a is ahead of App Store Connect build 11. Build 12 needs Pete’s OK." },
+          "android": { "state": "todo", "note": "GitHub main 15aa8bd. Not in Play Console." } },
+        { "id": "submit", "label": "Sent for review",
+          "ios": { "state": "todo" },
+          "android": { "state": "todo" } },
+        { "id": "public", "label": "Public on the store",
+          "ios": { "state": "todo" },
+          "android": { "state": "todo" } }
+      ]
+    },
+    {
+      "name": "Website",
+      "items": [
+        { "id": "web-pages", "label": "App, privacy and support pages live",
+          "web": { "state": "done", "note": "/app/, /privacy/ and /support/." } },
+        { "id": "web-order", "label": "Order desk live",
+          "web": { "state": "done", "note": "/order/" } },
+        { "id": "web-redirect", "label": "Links without a trailing slash work",
+          "web": { "state": "todo", "note": "/app, /privacy, /support and /order send you to http:// and error (500)." } }
+      ]
+    }
+  ]
+}
