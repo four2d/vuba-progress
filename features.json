@@ -1,5 +1,5 @@
 {
-  "updated": "10 Nov 2026, 10:05 UK",
+  "updated": "10 Nov 2026, 12:05 UK",
   "platforms": [
     { "id": "ios", "name": "iPhone" },
     { "id": "android", "name": "Android" },
@@ -59,7 +59,7 @@
       "items": [
         { "id": "unit-tests", "label": "Unit tests pass",
           "ios": { "state": "done", "note": "51 of 51." },
-          "android": { "state": "done", "note": "87 tests. 85 run, 2 live tests skip without the login." } },
+          "android": { "state": "done", "note": "93 tests. 91 run, 2 live tests skip without the login." } },
         { "id": "real-phone", "label": "Tested on a real phone (camera measure, quote, accept)",
           "ios": { "state": "todo" },
           "android": { "state": "todo" } },
@@ -101,7 +101,7 @@
           "android": { "state": "todo" } },
         { "id": "signing", "label": "Release signing",
           "ios": { "state": "done" },
-          "android": { "state": "part", "note": "Reads a key from outside the repo. No upload key yet." } }
+          "android": { "state": "done", "note": "Signed with the Play upload key kept outside the repo." } }
       ]
     },
     {
@@ -109,10 +109,10 @@
       "items": [
         { "id": "test-build", "label": "Test build on a phone (TestFlight or Play internal)",
           "ios": { "state": "done", "note": "Build 12 on TestFlight, internal group Vuba Wiltshire (10 Nov). Laura Billingsley has build 11 installed." },
-          "android": { "state": "todo", "note": "Not in Play Console." } },
+          "android": { "state": "done", "note": "Version 1.0.1 (3) rolled out to Play internal testing on 10 Nov." } },
         { "id": "latest-code", "label": "Store build has the latest GitHub code",
           "ios": { "state": "part", "note": "TestFlight build 12 matches GitHub main f462f08. Version 1.0 still has build 11 attached; switching needs Pete’s OK." },
-          "android": { "state": "todo", "note": "GitHub main 15aa8bd. Not in Play Console." } },
+          "android": { "state": "part", "note": "Play internal has 1.0.1 (3). GitHub main is 1.0.4 (6), with weekday-only delivery dates and camera corner changes. Not uploaded yet." } },
         { "id": "submit", "label": "Sent for review",
           "ios": { "state": "todo" },
           "android": { "state": "todo" } },
