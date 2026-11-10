@@ -1,5 +1,5 @@
 {
-  "updated": "10 Nov 2026",
+  "updated": "10 Nov 2026, 10:05 UK",
   "platforms": [
     { "id": "ios", "name": "iPhone" },
     { "id": "android", "name": "Android" },
@@ -31,7 +31,7 @@
           "ios": { "state": "todo", "note": "iPhone measures with the camera, then edits the plan." },
           "android": { "state": "done", "note": "Quick rectangle or tap the corners." } },
         { "id": "camera-measure", "label": "Measure with the camera",
-          "ios": { "state": "part", "note": "In build 11. Not yet checked on a real iPhone." },
+          "ios": { "state": "part", "note": "In build 12 on TestFlight. Not yet checked on a real iPhone." },
           "android": { "state": "part", "note": "ARCore first pass. Not tried on a real phone." } },
         { "id": "blend", "label": "Pick a blend",
           "ios": { "state": "done" },
@@ -46,7 +46,7 @@
           "ios": { "state": "done" },
           "android": { "state": "done" } },
         { "id": "support", "label": "Call or email the office (01985 221123, info@vubawiltshire.co.uk)",
-          "ios": { "state": "part", "note": "On GitHub main 177936a. Not in build 11." },
+          "ios": { "state": "done", "note": "In build 12 on TestFlight (10 Nov). Not in build 11, which is still attached to version 1.0." },
           "android": { "state": "done" },
           "web": { "state": "done", "note": "On /app/, /privacy/ and /support/." } },
         { "id": "a11y", "label": "Accessibility labels",
@@ -108,10 +108,10 @@
       "name": "Release",
       "items": [
         { "id": "test-build", "label": "Test build on a phone (TestFlight or Play internal)",
-          "ios": { "state": "done", "note": "Build 11. Laura Billingsley has it installed." },
+          "ios": { "state": "done", "note": "Build 12 on TestFlight, internal group Vuba Wiltshire (10 Nov). Laura Billingsley has build 11 installed." },
           "android": { "state": "todo", "note": "Not in Play Console." } },
         { "id": "latest-code", "label": "Store build has the latest GitHub code",
-          "ios": { "state": "todo", "note": "GitHub main 177936a is ahead of App Store Connect build 11. Build 12 needs Pete’s OK." },
+          "ios": { "state": "part", "note": "TestFlight build 12 matches GitHub main f462f08. Version 1.0 still has build 11 attached; switching needs Pete’s OK." },
           "android": { "state": "todo", "note": "GitHub main 15aa8bd. Not in Play Console." } },
         { "id": "submit", "label": "Sent for review",
           "ios": { "state": "todo" },
