@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-13T13:21:48.655Z",
+        "reason": "Repo README: leave the layout alone. The side accent is the existing progress page, not a new card."
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-13T13:21:48.669Z",
+        "reason": "Repo README: leave the layout alone. The top rule on rounded panels is the existing page."
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-13T13:21:48.680Z",
+        "reason": "Repo README: leave the layout and type alone. The kicker above the title is the existing page."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-13T13:21:48.692Z",
+        "reason": "Repo README: leave the colours alone. Brand red #821732 on charcoal #111A1F is specified."
+      }
+    ]
+  }
+}
