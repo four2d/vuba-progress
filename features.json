@@ -1,5 +1,5 @@
 {
-  "updated": "13 Nov 2026",
+  "updated": "13 Nov 2026, production live",
   "platforms": [
     { "id": "ios", "name": "iPhone" },
     { "id": "android", "name": "Android" },
@@ -122,10 +122,10 @@
           "android": { "state": "done", "note": "The production review is 1.0.5 (7), from GitHub main a9e92a9. No newer build was uploaded on 13 Nov." } },
         { "id": "submit", "label": "Sent for review",
           "ios": { "state": "todo" },
-          "android": { "state": "done", "note": "Sent 13 Nov 2026. United Kingdom, full rollout. Not public until Google approves it." } },
+          "android": { "state": "done", "note": "Sent 13 Nov 2026. United Kingdom, full rollout. Google approved it the same day." } },
         { "id": "public", "label": "Public on the store",
           "ios": { "state": "todo" },
-          "android": { "state": "todo" } }
+          "android": { "state": "done", "note": "Live 13 Nov 2026. Production Active, 1.0.5 (7), United Kingdom only. Play listing: https://play.google.com/store/apps/details?id=com.vubawiltshire.measure" } }
       ]
     },
     {

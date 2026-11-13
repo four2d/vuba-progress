@@ -4,7 +4,7 @@
 
 ## Queue
 
-1. **Waiting on Google. Android 1.0.5 (7).** Sent for review on 13 Nov as a full rollout in the United Kingdom. Same build as Play internal, list “FOXON internal”, from GitHub main `a9e92a9`. Not public until Google approves it. Do not upload another build unless Pete asks.
+1. **Done. Android 1.0.5 (7) is public.** Production Active on 13 Nov, United Kingdom only, 0 installs when Pete opened the dashboard. Same build as Play internal, list “FOXON internal”, from GitHub main `a9e92a9`. Play’s dashboard shows two non-blocking notes: obfuscation 0%, fix by February 2027, and an edge-to-edge recommendation. Do not upload another build unless Pete asks.
 2. **Waiting on Pete. iPhone build 12.** Build 12 is on TestFlight (10 Nov, 09:56 UK) from GitHub main `f462f08`. Version 1.0 still has build 11 attached, without the support email, until Pete says to switch. App Store Connect was not reopened on 13 Nov.
 3. **Waiting on Pete. App Store forms.** The privacy page is live: Vuba Wiltshire is a trading name of Cherry Home Improvements Ltd, company number 10009356. The App Store privacy URL is still empty. Then App Privacy answers, and price and countries. The base country still showed the US on 10 Nov.
 4. **Waiting on a real iPhone.** Use TestFlight to check camera measure, a quote and an accept on the newest build, with the practice account only.
@@ -17,6 +17,6 @@ Also open: Pete needs to confirm someone reads `info@vubawiltshire.co.uk`. The V
 
 ## Do not
 
-- Upload, submit, release or touch Play Console or App Store Connect unless Pete says so in chat. The 13 Nov Android review is already sent.
+- Upload, submit, release or touch Play Console or App Store Connect unless Pete says so in chat. Android 1.0.5 (7) is already public in the United Kingdom.
 - Print the demo login password anywhere.
 - Use the details of Vuba Surfaces Wiltshire Limited (Poole). It is a different company. The data controller is Cherry Home Improvements Ltd, company number 10009356.
